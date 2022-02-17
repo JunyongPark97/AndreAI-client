@@ -26,10 +26,10 @@ function LandingNav() {
           <li>
             <button
               onClick={() => {
-                history.push("/community");
+                history.push("/vision");
               }}
             >
-              광장 가기
+              비전
             </button>
           </li>
           <li>
@@ -39,7 +39,7 @@ function LandingNav() {
                 setModalOpen(true);
               }}
             >
-              스토리 보기
+              결과 예시
             </button>
           </li>
           <li>
@@ -49,7 +49,7 @@ function LandingNav() {
                 history.push("/register");
               }}
             >
-              네오 만들기
+              시작하기
             </button>
           </li>
           <li>
@@ -59,7 +59,7 @@ function LandingNav() {
                 history.push("/login");
               }}
             >
-              네오 집 가기
+              문의하기
             </button>
           </li>
         </StyledUl>

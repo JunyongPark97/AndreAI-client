@@ -7,11 +7,10 @@ import LandingNav from "./LandingNav";
 import { customMedia } from "../../styles/GlobalStyle";
 import images from "../../assets";
 import Modal from "../../components/modals/ComingSoonModal";
-import { Helmet, HelmetProvider } from "react-helmet-async";
-import mainImg from "../../assets/main_web.png";
+import ModalContent from "../../components/modals/ModalContent";
 
 const StyledBtn = styled.button`
-  width: 142px;
+  width: 160px;
   height: 62px;
   background-color: ${(props) => props.theme.palette.pink};
   color: ${(props) => props.theme.palette.white};
@@ -25,14 +24,10 @@ const StyledBtn = styled.button`
   }
 
   ${customMedia.lessThan("mobile")`
-    width: 114px;
+    width: 128px;
     height: 52px;
     font-size: 16px;
   `}
-`;
-
-const ShadowBtn = styled(StyledBtn)`
-  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
 `;
 
 const Container = styled.div`
@@ -45,7 +40,7 @@ const Container = styled.div`
     margin-bottom: 60px;
     font-weight: 900;
     line-height: 92px;
-    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 0px 3px 6px black;
   }
   h2 {
     font-size: 48px;
@@ -55,7 +50,7 @@ const Container = styled.div`
   h3 {
     font-weight: bold;
     font-size: 32px;
-    text-shadow: 0px 3px 6px rgba(0, 0, 0, 0.3);
+    text-shadow: 0px 3px 6px black;
   }
   p {
     font-size: 24px;
@@ -175,14 +170,13 @@ const Section3 = styled.section`
 
   ${customMedia.lessThan("mobile")`
     padding: 96px 24px 0 24px;
-
+    h2 {
+      margin-bottom: 12px;
+    }
     div {
       flex-direction: column;
-      width: 312px;
       align-items: flex-start;
-      margin: auto;
-      margin-bottom: 128px;
-      // margin: 0 0 128px 0;
+      margin: 0 0 128px 0;
       & > .second-img {
         order:3
       }
@@ -203,18 +197,16 @@ const Section3 = styled.section`
       }
     }
     img {
-      width: 312px;
-      height: 312px;
+      width: 327px;
+      height: 327px;
+      margin-top: 80px;
     }
     h2 {
-      margin-bottom: 12px;
       line-height: 48px;
     }
     p {
       font-size: 16px;
       line-height: 26px;
-      margin-bottom: 64px;
-      letter-spacing: -0.03em;
     }
   `}
 `;
@@ -231,6 +223,10 @@ const Section4 = styled.section`
     font-size: 20px;
     line-height: 29px;
   }
+  .added-web {
+    font-size: 18px;
+    color: "#FF99B6"
+  }
   & > .mobile {
     display: none;
   }
@@ -239,16 +235,13 @@ const Section4 = styled.section`
     font-size: 20px;
     font-weight: 500;
     background-color: transparent;
+    width: 120px;
     height: 29px;
     color: ${(props) => props.theme.palette.flowerPink};
     img {
       width: 16px;
       height: 16px;
     }
-  }
-  .story-btn {
-    flex-direction: row;
-    align-items: center;
   }
   ${customMedia.lessThan("mobile")`
   padding: 96px 24px;
@@ -281,7 +274,7 @@ const Section5 = styled.section`
     display: none;
   }
   ${customMedia.lessThan("mobile")`
-    padding: 64px 0px;
+    padding: 80px 0px;
     & > .web {
       display: none;
     }
@@ -293,61 +286,60 @@ const Section5 = styled.section`
   `}
 `;
 function LandingPage() {
+  const history = useHistory();
   const [modalOpen, setModalOpen] = useState(false);
 
   const onClickHandler = () => {
-    window.location.href = "/register";
+    history.push("/register");
   };
-
   return (
     <>
       <LandingNav />
+
       <Container>
         <Section1>
           <div className="img-web"></div>
           <div className="img-mobile"></div>
-          <h3>나를 담는 단 하나의 방법</h3>
-          <h1>'네오'</h1>
-          <ShadowBtn onClick={onClickHandler}>네오 만들기</ShadowBtn>
+          <h3>
+	  셀러의 촬영 시간과 비용을 줄여주는
+	  <br />
+	  
+	  </h3>
+	  <h1>앙드레AI</h1>
+ 	  <p><br /> </p> 
+          <StyledBtn onClick={onClickHandler}>체험하러 가기</StyledBtn>
         </Section1>
         <Section2>
           <p className="web">
-            곧 우리가 살아갈 확장된 세계,
+            여러가지 색상의 옷을 촬영하기 힘드신가요?
             <br />
-            메타버스 속 아바타의 모습은 계속 바뀔거에요.
-            <br />
-            나의 인격인 '네오'를 만들어
-            <br />
-            새로운 세계에서 살아갈 준비를 해보세요.
-            <br />
+	    고객들에게 색상별 분위기가 어떤지 보여주고 싶으시다면
+	    <br />
+	    앙드레AI로 색변환을 해보세요.
+	    <br />
           </p>
           <p className="mobile">
-            곧 우리가 살아갈 확장된 세계,
+            여러가지 색상의 옷을
+	    <br />
+	    촬영하기 힘드신가요?
+	    <br />
+	    고객들에게 색상별 분위기가
+	    <br />
+	    어떤지 보여주고 싶으시다면
             <br />
-            메타버스 속 아바타의 모습은
-            <br />
-            계속 바뀔거에요.
-            <br />
-            나의 인격인 '네오'를 만들어
-            <br />
-            새로운 세계에서
-            <br />
-            살아갈 준비를 해보세요.
+            앙드레AI로 색변환을 해보세요.
           </p>
         </Section2>
         <Section3>
           <div>
             <span>
               <h2>
-                나를 네오에
+                안녕하세요 판매자님!
                 <br />
-                담아보세요
+                먼저 메인으로 이용 할
+	   	<br />
+	        착용샷을 올려주세요
               </h2>
-              <p>
-                나의 인격인 네오에
-                <br />
-                성격과 가치관을 가장 먼저 담아보세요.
-              </p>
             </span>
             <img src={images.mini_01} />
           </div>
@@ -355,29 +347,23 @@ function LandingPage() {
             <img className="second-img" src={images.mini_02} />
             <span>
               <h2 className="second-title">
-                네오가 캐릭터로
+                실제 색상과 가장 가까운
                 <br />
-                표현돼요
+                디테일컷을 색상 별로
+	  	<br />
+	  	업로드 해주세요!
               </h2>
-              <p className="second-desc">
-                네오의 모습은 16가지 캐릭터와
-                <br />
-                여러 아이템으로 표현돼요.
-              </p>
             </span>
           </div>
           <div>
             <span>
               <h2>
-                네오 캐릭터로
+                10초만에 앙드레AI가
                 <br />
-                나를 소개해보세요
+                디테일컷의 색상들로
+	        <br />
+	  	메인 착용샷을 바꿔드려요
               </h2>
-              <p>
-                이제 네오 캐릭터로 친구들에게
-                <br />
-                나를 소개하고 mbti처럼 사용해보세요.
-              </p>
             </span>
             <img src={images.mini_03} />
           </div>
@@ -385,67 +371,67 @@ function LandingPage() {
             <img src={images.mini_04} className="fourth-img" />
             <span>
               <h2 className="fourth-title">
-                모든 메타버스에서
-                <br />
-                네오가 필요할 거에요
+                변경된 사진들로
+	  	<br />
+	  	고객들에게 색상별
+	  	<br />
+	  	분위기를 보여주세요
               </h2>
-              <p className="fourth-desc">
-                다양한 모습의 모든 아바타에
-                <br />
-                네오라는 인격이 있어 또 다른 나로 살 수 있어요.
-              </p>
             </span>
           </div>
         </Section3>
         <Section4>
-          <h2>네오를 왜 만드나요?</h2>
+          <h2>어떻게 색을 바꾸나요?</h2>
           <p className="web">
-            2040년, 현실이라는 절대적인 기준이 없어진 세상.
+            앙드레AI는 수만개의 옷 사진들을 학습하여
             <br />
-            인류는 그 속에서 자신을 잃어버리는 혼돈에 빠집니다.
+            자연스럽게 사진의 색상을 바꾸는 능력을 갖고 있어요!
             <br />
-            우리는 인류를 구하기 위해
+            판매자님이 올려주신 디테일컷의 팔부분, 목부분등의 실제 색상과 특징을
             <br />
-            분기점이 된 2022년, 현재로 도착하고..
+            앙드레AI가 정확히 인식해서 메인 착용샷에 적용시켜 드립니다.
             <br />
           </p>
+	  <p className="web" style={{color:"#FF99B6"}}>
+	    단, 메인착용샷은 가장 밝은 컬러로 올려주셔야 앙드레AI가 일하기 편해요!</p>
           <p className="mobile">
-            2040년, 현실이라는
+            앙드레AI는 수만개의 옷 사진들을
+	    <br />
+	    학습하여 자연스럽게 사진의 색상을
             <br />
-            절대적인 기준이 없어진 세상.
+	    바꾸는 능력을 갖고 있어요!
             <br />
-            인류는 그 속에서
+	    판매자님이 올려주신 디테일컷의
             <br />
-            자신을 잃어버리는 혼돈에 빠집니다.
+	    팔부분, 목부분등의 색상과 특징을
             <br />
-            우리는 인류를 구하기 위해
+	    앙드레AI가 정확히 인식해서
             <br />
-            분기점이 된 2022년 현재로 도착하고..
-            <br />
+	    메인 착용샷에 적용시켜 드립니다.
+	    <br />
           </p>
-          <button
-            onClick={() => {
-              setModalOpen(true);
-            }}
-          >
-            <div className="story-btn">
-              스토리 보기
-              <img src={images.powderPinkArr} />
-            </div>
-          </button>
+	  <p className="mobile" style={{color:"#FF99B6"}}>
+	  단, 메인 착용샷은 가장 밝은 컬러로 올려주셔야
+	  <br />
+	  앙드레AI가 일하기 편해요!
+	  </p>
         </Section4>
         <Section5>
           <h2 className="web">
-            지금 바로
+            다양한 색상의 착용사진을,
             <br />
-            네오를 만들어보세요
+            지금 무료로 만들어보세요
           </h2>
           <h2 className="mobile">
-            지금 바로
+            다양한 색상의
+	    <br />
+	    착용사진을,
             <br />
-            네오를 만들어보세요
+            지금 무료로
+            <br />
+            만들어보세요
           </h2>
-          <StyledBtn onClick={onClickHandler}>네오 만들기</StyledBtn>
+          <StyledBtn onClick={onClickHandler}>체험하러 가기</StyledBtn>
         </Section5>
         {modalOpen && (
           <Modal
@@ -455,7 +441,18 @@ function LandingPage() {
             onClose={() => {
               setModalOpen(false);
             }}
-          ></Modal>
+          >
+            <ModalContent>
+              <h2 className="modal-title">
+                기술력으로 패션산업에 혁신을!
+              </h2>
+              <p className="modal-desc">
+                스토리 페이지는 현재 업데이트 준비중에 있습니다.
+                <br />
+                빠른 시일내에 준비하여 찾아뵙겠습니다.
+              </p>
+            </ModalContent>
+          </Modal>
         )}
       </Container>
       <Footer />

@@ -11,9 +11,10 @@ function ComingSoon() {
     <>
       <Navbar goBack={true} />
       <StyledContainer>
-        <h1>Coming Soon!</h1>
+        <h2>AI로 패션 산업을 혁신한다.</h2>
         <p className="desc">
-          광장에서 다른 네오들과 소통해보세요!
+	  <br />
+          인공지능의 가능성은 무궁무진 합니다.
           <br />
           빠른 시일내에 준비하여 찾아뵙겠습니다.
         </p>

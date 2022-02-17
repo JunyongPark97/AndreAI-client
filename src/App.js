@@ -67,7 +67,7 @@ function App() {
               <Route path="/register" component={Register}></Route>
               <Route path="/resetpw" component={ResetPw}></Route>
               <Route path="/404" component={NotFound}></Route>
-              <Route path="/community" component={Community}></Route>
+              <Route path="/vision" component={Community}></Route>
               <Route path="/:id" component={NeoHome}></Route>
             </Switch>
           </AppBlock>
