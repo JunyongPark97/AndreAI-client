@@ -3,32 +3,27 @@
 import React, { useState, useEffect, useRef } from "react";
 import InputDiv from "../../components/InputDiv";
 import Button from "../../components/Button";
-import { isMbti } from "../../utils/regexes";
-import { sendMbti } from "../../_actions/register_action";
+import { sendName } from "../../_reducers/register_reducer";
 import { useHistory } from "react-router";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "../../components/Footer";
 import Container from "../../components/Container";
 import FormDiv from "../../components/FormDiv";
 import Navbar from "../../components/Navbar";
 
-function MBTI() {
+function Name() {
   const history = useHistory();
   const myRef = useRef();
   const dispatch = useDispatch();
-  const [mbti, setMbti] = useState("");
+  const store = useSelector((store) => store.register);
+  const [name, setName] = useState("");
   const [type, setType] = useState(false);
   const [msg, setMsg] = useState(0);
 
-  const onMbtiHandler = (event) => {
-    setMbti(event.target.value);
+  const onNameHandler = (event) => {
+    setName(event.target.value);
   };
 
-  const messages = [
-    "대문자 혹은 소문자 4자리로 알려주세요",
-    "올바른 mbti 형식이 아니에요",
-    "",
-  ];
   const onFocusHandler = (event) => {
     event.stopPropagation();
     myRef.current.style.transform = "TranslateY(-10000px)";
@@ -37,43 +32,35 @@ function MBTI() {
       myRef.current.style.transform = "none";
     }, 100);
   };
-  useEffect(() => {
-    setType(isMbti(mbti));
-    if (mbti.length == 4 && !type) {
-      setMsg(1);
-    } else {
-      setMsg(0);
-    }
-  }, [mbti]);
 
   useEffect(() => {
-    if (type) {
-      setMsg(2);
-    }
-  }, [type]);
+    setType(name.length > 0);
+  }, [name]);
 
   const onSubmitHandler = () => {
-    dispatch(sendMbti(mbti));
-    history.push("/register/values");
+    const body = {
+      phone: store.phone,
+      shop_name: name,
+    };
+    dispatch(sendName(body)).then(() => {
+      history.push("/register/target");
+    });
   };
   return (
     <>
       <Navbar goBack={true} />
       <Container>
         <InputDiv color={msg == 1 ? "purple" : "pink"}>
-          <h3>나의 MBTI를 알려주세요</h3>
-          <h4>네오에게 담겨요</h4>
+          <h3>쇼핑몰 이름을 입력해주세요.</h3>
           <FormDiv>
             <form onFocus={onFocusHandler} ref={myRef}>
-              <label>mbti</label>
+              <label>쇼핑몰명</label>
               <input
                 type="text"
-                value={mbti}
-                placeholder="ISFP"
-                maxLength="4"
-                onChange={onMbtiHandler}
+                value={name}
+                placeholder="앙드레 쇼핑몰"
+                onChange={onNameHandler}
               ></input>
-              <p>{messages[msg]}</p>
             </form>
           </FormDiv>
           <Button
@@ -90,4 +77,4 @@ function MBTI() {
   );
 }
 
-export default MBTI;
+export default Name;

@@ -1,59 +1,121 @@
 /* eslint-disable */
 
-import {
-  AUTH_SUCCESS,
-  AUTH_FAILURE,
-  AUTH_REQ_SUCCESS,
-  AUTH_REQ_FAILURE,
-  ENTER_MBTI,
-  ENTER_PASSWORD,
-  ENTER_VALUES,
-  CONFIRM_MARKETING,
-  SIGNUP_SUCCESS,
-  NICKNAME_SUCCESS,
-} from "../_actions/types";
+import axios from "axios";
 
-export default function (state = {}, action) {
+const CONFIRM_MARKETING = "register/CONFIRM_MARKETING";
+const ENTER_PHONENUM = "register/ENTER_PHONENUM";
+const ENTER_NAME = "register/ENTER_NAME";
+const ENTER_TARGET = "register/ENTER_TARGET";
+const SIGNUP_SUCCESS = "register/SIGNUP_SUCCESS";
+const SIGNUP_FAILURE = "register/SIGNUP_FAILURE";
+
+export const confirmMarketing = (confirmed) => {
+  return {
+    type: CONFIRM_MARKETING,
+    payload: confirmed,
+  };
+};
+
+// store에 전화번호 저장
+export const sendPhoneNum = (phoneNum) => {
+  return {
+    type: ENTER_PHONENUM,
+    payload: phoneNum,
+  };
+};
+
+// 전화번호, 쇼핑몰 이름을 서버에 전송 후 응답으로 사용자의 id를 받아옴
+export const sendName = async (body) => {
+  try {
+    const req = await axios.post("/andre/user/", body);
+    return {
+      type: ENTER_NAME,
+      payload: req.data.id, // userId가 담겨있다고 가정
+    };
+  } catch (e) {
+    return {
+      payload: e,
+    };
+  }
+};
+
+// 사용자 id, target을 서버에 전송 후 응답으로 target id를 받아옴
+export const sendTarget = async (dataTosubmit) => {
+  try {
+    const formData = new FormData();
+    formData.append("target", dataTosubmit.target);
+    formData.append("id", dataTosubmit.id);
+    const options = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    const req = await axios.post("/andre/target/", formData, options); // TODO: url 넣기
+    return {
+      type: ENTER_TARGET,
+      payload: req.data.target_id, // target id가 담겨있다고 가정
+    };
+  } catch (e) {
+    console.log(e);
+    return {
+      payload: e,
+    };
+  }
+};
+
+// 서버에 회원가입 요청하는 액션
+// 사용자 id, target id, ref를 서버에 전송 후 응답으로 결과(list of urls)를 받아옴
+export const signUp = async (dataTosubmit) => {
+  try {
+    const formData = new FormData();
+    // formData.append("ref", dataTosubmit.ref);
+    formData.append("target_id", dataTosubmit.target_id);
+    const files = [...dataTosubmit.ref];
+    files.map((file) => {
+      formData.append("ref", file);
+    });
+    const options = {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    };
+    const req = await axios.post("/andre/reference/", formData, options);
+    return {
+      type: SIGNUP_SUCCESS,
+      payload: req.data,
+    };
+  } catch (e) {
+    return {
+      type: SIGNUP_FAILURE,
+      payload: e,
+    };
+  }
+};
+
+export default function register(state = {}, action) {
   switch (action.type) {
-    case AUTH_REQ_SUCCESS:
-      return { ...state, phone: action.payload };
-    case AUTH_REQ_FAILURE:
-      return state;
-    case AUTH_SUCCESS:
+    case ENTER_PHONENUM:
       return {
         ...state,
-        phone: action.payload.phone,
-        confirm_key: action.payload.confirm_key,
+        phone: action.payload,
       };
-    case AUTH_FAILURE:
-      return state;
     case CONFIRM_MARKETING:
       return {
         ...state,
         is_marketing: action.payload,
       };
-    case ENTER_MBTI:
+    case ENTER_NAME:
       return {
-        ...state,
-        mbti: action.payload,
+        userId: action.payload,
       };
-    case ENTER_PASSWORD:
+    case ENTER_TARGET:
       return {
         ...state,
-        password: action.payload,
-      };
-    case ENTER_VALUES:
-      return {
-        ...state,
-        values: action.payload,
-      };
-    case NICKNAME_SUCCESS:
-      return {
-        ...state,
-        nickname: action.payload,
+        targetId: action.payload,
       };
     case SIGNUP_SUCCESS:
       return {
+        ...state,
         result: action.payload,
       };
     default:

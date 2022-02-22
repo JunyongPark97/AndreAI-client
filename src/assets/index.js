@@ -64,7 +64,9 @@ import shiningnft from "./shiningnft.png";
 import emptyframe from "./emptyframe.png";
 import goleft from "./goleft.png";
 import goright from "./goright.png";
+import andreloading from "./andreloading.gif";
 const images = {
+  andreloading,
   goright,
   goleft,
   emptyframe,

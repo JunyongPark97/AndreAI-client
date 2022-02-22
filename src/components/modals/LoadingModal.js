@@ -13,8 +13,6 @@ function LoadingModal({
   closable,
   visible,
   children,
-  nft,
-  item,
 }) {
   const onMaskClick = (e) => {
     if (e.target === e.currentTarget) {
@@ -38,8 +36,7 @@ function LoadingModal({
       >
         <ModalInner tabIndex="0" className="modal-inner">
           <LoadingModalContent>
-            {item && <img src={images.itemloading} />}
-            {nft && <img src={images.nftloading} />}
+            <img src={images.andreloading} />
           </LoadingModalContent>
         </ModalInner>
       </ModalWrapper>

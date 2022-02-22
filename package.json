@@ -11,7 +11,9 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "env-cmd": "^10.1.0",
+    "file-saver": "^2.0.5",
     "http-proxy-middleware": "^2.0.2",
+    "jszip": "^3.7.1",
     "react": "^17.0.2",
     "react-copy-to-clipboard": "^5.0.4",
     "react-dom": "^17.0.2",
@@ -59,5 +61,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://3.37.147.189:8080"
+  "proxy": "http://13.125.156.43:8000"
 }

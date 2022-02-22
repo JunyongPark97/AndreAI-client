@@ -6,8 +6,10 @@ import SmallBtn from "../../components/SmallBtn";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { isPhoneNumber } from "../../utils/regexes";
-import { getAuth } from "../../_actions/register_action";
-import { confirmMarketing } from "../../_actions/register_action";
+import {
+  confirmMarketing,
+  sendPhoneNum,
+} from "../../_reducers/register_reducer";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router";
 import checked from "../../assets/checked.png";
@@ -79,20 +81,9 @@ function PhoneNum() {
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
-    let body = {
-      phone: phoneNum,
-    };
     dispatch(confirmMarketing(marketing));
-    dispatch(getAuth(body)).then((response) => {
-      if (response.type == "auth_req_success") {
-        history.push("/register/authnum");
-      } else if (
-        response.payload.non_field_errors[0] == "이미 가입된 정보가 있습니다."
-      ) {
-        setMsg(2);
-        setActivateBtn(false);
-      }
-    });
+    dispatch(sendPhoneNum(phoneNum));
+    history.push("/register/name");
   };
   const onFocusHandler = (event) => {
     event.stopPropagation();
@@ -130,9 +121,6 @@ function PhoneNum() {
               ></input>
               <p>{messages[msg]}</p>
             </form>
-            <SmallBtn onClick={onClickHandler}>
-              이미 네오를 발급 받았었나요?
-            </SmallBtn>
             <AgrDiv>
               <CheckBox>
                 <span type="button" onClick={onTermHandler}>
