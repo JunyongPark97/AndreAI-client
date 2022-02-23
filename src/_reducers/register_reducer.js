@@ -56,7 +56,6 @@ export const sendTarget = async (dataTosubmit) => {
       payload: req.data.target_id, // target id가 담겨있다고 가정
     };
   } catch (e) {
-    console.log(e);
     return {
       payload: e,
     };
@@ -87,6 +86,19 @@ export const signUp = async (dataTosubmit) => {
   } catch (e) {
     return {
       type: SIGNUP_FAILURE,
+      payload: e,
+    };
+  }
+};
+
+export const sendEmail = async (dataTosubmit) => {
+  try {
+    const req = await axios.post("/andre/send_email/", dataTosubmit);
+    return {
+      payload: req,
+    };
+  } catch (e) {
+    return {
       payload: e,
     };
   }

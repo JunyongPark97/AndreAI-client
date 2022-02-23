@@ -5,7 +5,7 @@ import Button from "../../components/Button";
 import SmallBtn from "../../components/SmallBtn";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { isPhoneNumber } from "../../utils/regexes";
+import { isEmail } from "../../utils/regexes";
 import {
   confirmMarketing,
   sendPhoneNum,
@@ -33,7 +33,7 @@ function PhoneNum() {
 
   const messages = [
     "전화번호 10자리 혹은 11자리를 알려주세요",
-    "올바른 전화번호 형식이 아니에요",
+    "올바른 이메일 형식이 아니에요",
     "이미 네오가 있는 전화번호에요",
     "",
   ];
@@ -76,7 +76,7 @@ function PhoneNum() {
   };
   const onPhoneNumHandler = (event) => {
     setPhoneNum(event.target.value);
-    setPhoneType(isPhoneNumber(event.target.value));
+    setPhoneType(isEmail(event.target.value));
   };
 
   const onSubmitHandler = (event) => {
@@ -117,7 +117,6 @@ function PhoneNum() {
                 placeholder="01012345678"
                 onChange={onPhoneNumHandler}
                 onBlur={onBlurHandler}
-                maxLength="11"
               ></input>
               <p>{messages[msg]}</p>
             </form>

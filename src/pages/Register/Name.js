@@ -39,9 +39,10 @@ function Name() {
 
   const onSubmitHandler = () => {
     const body = {
-      phone: store.phone,
+      email: store.phone,
       shop_name: name,
     };
+    console.log(body);
     dispatch(sendName(body)).then(() => {
       history.push("/register/target");
     });

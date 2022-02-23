@@ -14,10 +14,7 @@ function MsgModal({ show, share, auth, left, center, mobile }) {
       center={center}
       mobile={mobile}
     >
-      <img className="copy-modal-img" src={images.blackalert} />
-      {share && (
-        <span className="copy-modal-desc">클립보드에 복사되었어요!</span>
-      )}
+      {share && <span className="copy-modal-desc">메일로 전송되었어요!</span>}
       {auth && (
         <span className="copy-modal-desc">인증번호가 전송되었어요!</span>
       )}

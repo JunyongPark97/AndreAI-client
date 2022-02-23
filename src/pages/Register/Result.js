@@ -2,30 +2,25 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
-import axios from "axios";
-import JSZip from "jszip";
-import FileSaver from "file-saver";
 
 import Button from "../../components/Button";
 import { customMedia } from "../../styles/GlobalStyle";
+import { sendEmail } from "../../_reducers/register_reducer";
 import Container from "../../components/Container";
 import Navbar from "../../components/Navbar";
 import Footer from "../../components/Footer";
+import MsgModal from "../../components/modals/MsgModal";
 
 function Result() {
-  const store = useSelector((store) => store.register.result);
+  const store = useSelector((store) => store.register);
   // 여기 담겨있는 Img url들을 화면에 보여준다.
   const [modal, setModal] = useState(false);
-  const arr = [];
   const onClickHandler = () => {
-    store.result.map((url, i) => {
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", "image.jpg");
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+    const body = {
+      target_id: store.targetId,
+    };
+    sendEmail(body).then((req) => {
+      setModal(true);
     });
   };
 
@@ -55,25 +50,26 @@ function Result() {
   }
   window.addEventListener("touchstart", blockTouchStart);
 
-  // 복사되었습니다 모달
-  useEffect(() => {
-    if (modal) {
-      let timer = setTimeout(() => {
-        setModal(false);
-      }, 2000);
-      return () => {
-        clearTimeout(timer);
-      };
-    }
-  }, [modal]);
+  // // 복사되었습니다 모달
+  // useEffect(() => {
+  //   if (modal) {
+  //     let timer = setTimeout(() => {
+  //       setModal(false);
+  //     }, 2000);
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }
+  // }, [modal]);
 
   return (
     <>
       <Navbar />
       <Container>
         <StyledDiv>
+          <h3>쇼핑몰 이름을 입력해주세요.</h3>
           <ImgContainer>
-            {store.result.map((item, i) => {
+            {store.result.result.map((item, i) => {
               return (
                 <ImgItem>
                   <img src={item} key={i} />
@@ -82,8 +78,9 @@ function Result() {
             })}
           </ImgContainer>
           <StaticBtn onClick={onClickHandler} color="pink">
-            다운 받기
+            메일 받기
           </StaticBtn>
+          <MsgModal show={modal} share center />
         </StyledDiv>
         <Footer />
       </Container>
@@ -121,20 +118,5 @@ const ImgContainer = styled.div`
   overflow: auto;
 `;
 const ImgItem = styled.div`
-  img {
-    width: 240px;
-    height: 240px;
-  }
   margin-bottom: 20px;
 `;
-
-const fakeImgs = [
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-  "https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
-];
