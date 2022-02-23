@@ -71,7 +71,14 @@ function Ref() {
         <StyledDiv>
           <h3>사용할 디테일 컷 사진을 업로드 해주세요</h3>
           <form className="first" onFocus={onFocusHandler} ref={myRef}>
-            <label for="upload_file">디테일 컷 업로드</label>
+            <div>
+              <p>
+                사용할 착용 사진을 업로드 해주세요
+                <br />
+                사용할 착용 사진을 업로드 해주세요
+              </p>
+              <label for="upload_file">디테일 컷 업로드</label>
+            </div>
             <input
               type="file"
               multiple
@@ -81,13 +88,13 @@ function Ref() {
             ></input>
             <p>{count}</p>
           </form>
-          <Button
+          <StyledBtn
             onClick={onClickHandler}
             disabled={!type}
             color={!type ? "lightPink" : "pink"}
           >
-            디테일 컷 업로드
-          </Button>
+            다음
+          </StyledBtn>
         </StyledDiv>
         <Footer />
       </Container>
@@ -105,6 +112,7 @@ function Ref() {
 
 export default Ref;
 
+const StyledBtn = styled(Button)``;
 const StyledDiv = styled.div`
   width: 640px;
   margin: auto;
@@ -113,7 +121,6 @@ const StyledDiv = styled.div`
   position: relative;
   flex: 1 0 auto;
   color: ${(props) => props.theme.palette.black};
-
   h3 {
     margin-bottom: 8px;
     font-weight: 700;
@@ -141,6 +148,7 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    display: relative;
   }
   form:focus-within {
     label {
@@ -171,7 +179,7 @@ const StyledDiv = styled.div`
     display: none;
   }
   label {
-    background: ${(props) => props.theme.palette.pink};
+    background: #f88817;
     width: 200px;
     height: 40px;
     color: ${(props) => props.theme.palette.white};
@@ -179,6 +187,15 @@ const StyledDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  div {
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: TranslateX(-50%) TranslateY(-50%);
+    p {
+      margin-bottom: 20px;
+    }
   }
 
   ${customMedia.lessThan("mobile")`

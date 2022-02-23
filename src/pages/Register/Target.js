@@ -59,7 +59,14 @@ function Target() {
         <StyledDiv>
           <h3>사용할 착용 사진을 업로드 해주세요</h3>
           <form onFocus={onFocusHandler} ref={myRef}>
-            <label for="upload_file">모델 컷 업로드</label>
+            <div>
+              <p>
+                사용할 착용 사진을 업로드 해주세요
+                <br />
+                사용할 착용 사진을 업로드 해주세요
+              </p>
+              <label for="upload_file">모델 컷 업로드</label>
+            </div>
             <input
               type="file"
               id="upload_file"
@@ -120,6 +127,7 @@ const StyledDiv = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
+    display: relative;
   }
   form:focus-within {
     label {
@@ -150,7 +158,7 @@ const StyledDiv = styled.div`
     display: none;
   }
   label {
-    background: ${(props) => props.theme.palette.pink};
+    background: #f88817;
     width: 200px;
     height: 40px;
     color: ${(props) => props.theme.palette.white};
@@ -158,7 +166,16 @@ const StyledDiv = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  div {
     cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    transform: TranslateX(-50%) TranslateY(-50%);
+    p {
+      margin-bottom: 20px;
+    }
   }
 
   ${customMedia.lessThan("mobile")`

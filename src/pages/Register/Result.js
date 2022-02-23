@@ -17,33 +17,15 @@ function Result() {
   const store = useSelector((store) => store.register.result);
   // 여기 담겨있는 Img url들을 화면에 보여준다.
   const [modal, setModal] = useState(false);
-  const historyHook = useHistory();
+  const arr = [];
   const onClickHandler = () => {
     store.result.map((url, i) => {
-      axios({
-        url: decodeURIComponent(url),
-        method: "GET",
-        responseType: "blob",
-      }).then((response) => {
-        console.log(response.data);
-        const url = window.URL.createObjectURL(new Blob([response.data]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", `test${i}.jpg`);
-        document.body.appendChild(link);
-        // link.click();
-      });
-    });
-  };
-
-  const CreateZip = () => {
-    const zip = new JSZip();
-    fakeImgs.map((item, i) => {
-      zip.folder("result").file(`result${i}`, item, { binary: true });
-    });
-    zip.folder("result").file("꾸생.txt", "Hello 꾸생!\n");
-    zip.generateAsync({ type: "blob" }).then((resZip) => {
-      FileSaver(resZip, "Download.zip");
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "image.jpg");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
     });
   };
 
