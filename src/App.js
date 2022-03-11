@@ -45,18 +45,18 @@ function App() {
       <BrowserRouter>
         <HelmetProvider>
           <Helmet>
-            <title>라스트네오</title>
+            <title>앙드레AI</title>
             <link rel="icon" href={favicon} />
             <meta property="og:url" content={currentUrl} />
             {/* title 정보 */}
-            <meta property="og:title" content="라스트네오 홈페이지" />
+            <meta property="og:title" content="앙드레AI 홈페이지" />
             {/* 페이지 상세 정보 */}
             <meta property="og:description" content="Lastneno HomePage" />
             {/* 페이지 대표 이미지 정보 */}
             <meta property="og:image" content={mainImg} />
 
             {/* 트위터 메타 정보 */}
-            <meta name="twitter:title" content="라스트네오 홈페이지" />
+            <meta name="twitter:title" content="앙드레AI 홈페이지" />
             <meta name="twitter:description" content="Lastneno HomePage" />
             <meta name="twitter:image" content={mainImg} />
           </Helmet>

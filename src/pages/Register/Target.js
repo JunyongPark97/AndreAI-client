@@ -58,13 +58,10 @@ function Target() {
       <Container>
         <StyledDiv>
           <h3>사용할 착용 사진을 업로드 해주세요</h3>
+          <p>선택하신 사진의 옷의 색상을 변환합니다.<br/></p>
           <form onFocus={onFocusHandler} ref={myRef}>
             <div>
-              <p>
-                사용할 착용 사진을 업로드 해주세요
-                <br />
-                사용할 착용 사진을 업로드 해주세요
-              </p>
+              <p>사용할 착용 사진을 업로드 해주세요</p>
               <label for="upload_file">모델 컷 업로드</label>
             </div>
             <input

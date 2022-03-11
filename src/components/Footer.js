@@ -104,7 +104,7 @@ function Footer({ color }) {
         </span>
         <span>
           <a href="https://foremost-avocado-334.notion.site/72c7e2423d9d4e75af4a239bfac0494c">
-            라스트네오
+            앙드레AI
             <br />
             이용약관
           </a>
@@ -124,7 +124,7 @@ function Footer({ color }) {
         </span>
         <span>
           <a href="https://foremost-avocado-334.notion.site/72c7e2423d9d4e75af4a239bfac0494c">
-            라스트네오 이용약관
+            앙드레AI 이용약관
           </a>
         </span>
         <span>

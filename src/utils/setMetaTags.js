@@ -1,5 +1,5 @@
 const setMetaTags = ({
-  title = "라스트네오",
+  title = "앙드레AI",
   description = "기본 설명",
   imageUrl = "기본 사이트 이미지 경로",
 }) => {

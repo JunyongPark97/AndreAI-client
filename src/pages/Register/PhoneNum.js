@@ -32,7 +32,7 @@ function PhoneNum() {
   const [marketing, setMarketing] = useState(true);
 
   const messages = [
-    "전화번호 10자리 혹은 11자리를 알려주세요",
+    "이메일 주소를 입력 해 주세요",
     "올바른 이메일 형식이 아니에요",
     "이미 네오가 있는 전화번호에요",
     "",
@@ -106,15 +106,15 @@ function PhoneNum() {
           className="input-container"
           color={msg == 1 || msg == 2 ? "purple" : "pink"}
         >
-          <h3>전화번호를 입력해주세요</h3>
-          <h4>네오의 집 주소나 비밀번호를 까먹었을 때 필요해요</h4>
+          <h3>이메일주소를 입력해주세요</h3>
+          <h4>색 변환이 완료된 사진을 메일로 전달드려요</h4>
           <FormDiv>
             <form onFocus={onFocusHandler} ref={myRef}>
-              <label>전화번호</label>
+              <label>이메일</label>
               <input
                 type="text"
                 value={phoneNum}
-                placeholder="01012345678"
+                placeholder="abc@abc.com"
                 onChange={onPhoneNumHandler}
                 onBlur={onBlurHandler}
               ></input>
@@ -134,7 +134,7 @@ function PhoneNum() {
                   &nbsp;및&nbsp;
                   <StyledLink>
                     <a href="https://foremost-avocado-334.notion.site/72c7e2423d9d4e75af4a239bfac0494c">
-                      라스트네오 이용약관
+                      앙드레AI 이용약관
                     </a>
                   </StyledLink>
                   &nbsp;필수 동의

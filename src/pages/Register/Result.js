@@ -23,6 +23,21 @@ function Result() {
       setModal(true);
     });
   };
+  // const onClickHandler = e => {
+  //   console.log(e.target.href);
+  //   fetch(e.target.href, {
+  //     method: "GET",
+  //     headers: {}
+  //   })
+  //       .then(response => {
+  //         response.arrayBuffer().then(function(buffer) {
+  //           const url = window.URL.createObjectURL(new Blob([buffer]));
+  //           const link = document.createElement("a");
+  //           link.href = url;
+  //           link.setAttribute("download", "image.png")
+  //         })
+  //       })
+  // }
 
   history.pushState(null, null);
   window.onpopstate = function (event) {
@@ -67,7 +82,7 @@ function Result() {
       <Navbar />
       <Container>
         <StyledDiv>
-          <h3>쇼핑몰 이름을 입력해주세요.</h3>
+          {/*<h3>쇼핑몰 이름을 입력해주세요.</h3>*/}
           <ImgContainer>
             {store.result.result.map((item, i) => {
               return (

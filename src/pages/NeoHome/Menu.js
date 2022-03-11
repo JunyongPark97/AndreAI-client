@@ -14,7 +14,7 @@ function Menu() {
       <StyledDiv>
         <ul>
           <li>
-            <a href="/">라스트네오 홈페이지</a>
+            <a href="/">앙드레AI 홈페이지</a>
           </li>
           <HorizonLine />
           <li>
@@ -37,7 +37,7 @@ function Menu() {
           </li>
           <li>
             <a href="https://foremost-avocado-334.notion.site/72c7e2423d9d4e75af4a239bfac0494c">
-              라스트네오 이용약관
+              앙드레AI 이용약관
             </a>
           </li>
           <li>

@@ -70,14 +70,14 @@ function Ref() {
       <Container>
         <StyledDiv>
           <h3>사용할 디테일 컷 사진을 업로드 해주세요</h3>
+          <p>해당 디테일컷의 색상으로 변환합니다</p>
           <form className="first" onFocus={onFocusHandler} ref={myRef}>
             <div>
               <p>
-                사용할 착용 사진을 업로드 해주세요
-                <br />
-                사용할 착용 사진을 업로드 해주세요
+                사용할 디테일컷을 업로드 해주세요
+
               </p>
-              <label for="upload_file">디테일 컷 업로드</label>
+              <label className="upload" for="upload_file">디테일 컷 업로드</label>
             </div>
             <input
               type="file"
