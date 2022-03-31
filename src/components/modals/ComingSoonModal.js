@@ -33,12 +33,19 @@ function Modal({ className, onClose, maskClosable, closable, visible }) {
           <ModalContent>
             <img className="modal-img" src={images.comingsoon} />
             <h2 className="modal-title">
-              페이지 <span>준비중</span> 입니다..
+              자연스러운 색 변환
             </h2>
             <p className="modal-desc">
-              스토리 페이지는 현재 업데이트 준비중에 있습니다.
+                            <br />
+              변환하고 싶은 사진과 참고할 디테일 컷을 업로드하시면
               <br />
-              빠른 시일내에 준비하여 찾아뵙겠습니다.
+              앙드레AI가 실제 색과 동일하게 색을 바꿉니다.
+                            <br />
+              다양한 색상의 착용샷을 찍기 어려우시다면,
+              <br/>
+              앙드레AI를 이용해보세요.
+
+
             </p>
           </ModalContent>
           {closable && (

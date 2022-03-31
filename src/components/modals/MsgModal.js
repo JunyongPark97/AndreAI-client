@@ -14,7 +14,7 @@ function MsgModal({ show, share, auth, left, center, mobile }) {
       center={center}
       mobile={mobile}
     >
-      {share && <span className="copy-modal-desc">메일로 전송되었어요!</span>}
+      {share && <span className="copy-modal-desc">메일로 전송되었어요! 확인이 되지 않으신다면 이메일 정보를 확인해주세요.</span>}
       {auth && (
         <span className="copy-modal-desc">인증번호가 전송되었어요!</span>
       )}

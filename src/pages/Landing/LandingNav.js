@@ -56,7 +56,7 @@ function LandingNav() {
             <button
               onClick={() => {
                 setOpen(false);
-                history.push("/login");
+                window.open("https://foremost-avocado-334.notion.site/4a450d8cee6f449d9f1bfa6ef44a0755");
               }}
             >
               문의하기

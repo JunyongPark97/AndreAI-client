@@ -7,8 +7,8 @@ const ModalContent = styled.div`
   font-weight: 500;
   color: ${(props) => props.theme.palette.powderGrey};
   img.modal-img {
-    width: 200px;
-    height: 200px;
+    width: 400px;
+    height: 160px;
     margin-bottom: 40px;
     margin-top: 80px;
   }
@@ -27,8 +27,8 @@ const ModalContent = styled.div`
   }
   ${customMedia.lessThan("mobile")`
   img.modal-img {
-    width: 128px;
-    height: 128px;
+    width: 256px;
+    height: 102px;
     margin-bottom: 24px;
     margin-top: 120px;
   }
